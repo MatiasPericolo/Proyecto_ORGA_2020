@@ -3,10 +3,10 @@
 
 #include "lista.h"
 
-// Macros con c�digos de finalizaci�n
+// Macros con códigos de finalización
 #define MAP_ERROR_MEMORIA           100
 
-// Structs para la manipulaci�n de un mapeo.
+// Structs para la manipulación de un mapeo.
 struct entrada{
     void * clave;
     void * valor;
@@ -26,16 +26,16 @@ typedef struct entrada * tEntrada;
 typedef struct mapeo * tMapeo;
 
 // ---------------------------------------------------------------------------------------------
-// Definici�n de prototipos y documentaci�n de las funciones.
+// Definición de prototipos y documentación de las funciones.
 // Obs.: la tabla hash debe mantener control del factor de carga en todo momento.
-// Obs.: el factor de carga m�ximo permitido equivale al 75% de la longitud de la tabla.
+// Obs.: el factor de carga máximo permitido equivale al 75% de la longitud de la tabla.
 // ---------------------------------------------------------------------------------------------
 
 /**
- Inicializa un mapeo vac�o, con capacidad inicial igual al MAX(10, CI).
+ Inicializa un mapeo vacío, con capacidad inicial igual al MAX(10, CI).
  Una referencia al mapeo creado es referenciada en *M.
- A todo efecto, el valor hash para las claves ser� computado mediante la funci�n fHash.
- A todo efecto, la comparaci�n de claves se realizar� mediante la funci�n fComparacion.
+ A todo efecto, el valor hash para las claves será computado mediante la función fHash.
+ A todo efecto, la comparación de claves se realizará mediante la función fComparacion.
  Finaliza indicando MAP_ERROR_MEMORIA si no es posible reservar memoria correspondientemente.
 **/
 extern void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(void *, void *));
@@ -43,7 +43,7 @@ extern void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fCompara
 /**
  Inserta una entrada con clave C y valor V, en M.
  Si una entrada con clave C y valor Vi ya existe en M, modifica Vi por V.
- Retorna NULL si la clave C no exist�a en M, o Vi en caso contrario.
+ Retorna NULL si la clave C no existía en M, o Vi en caso contrario.
  Finaliza indicando MAP_ERROR_MEMORIA si no es posible reservar memoria correspondientemente.
 **/
 extern tValor m_insertar(tMapeo m, tClave c, tValor v);
