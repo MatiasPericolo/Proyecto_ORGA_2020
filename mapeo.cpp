@@ -24,6 +24,7 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     tLista * tabla;
     crear_lista(tabla);
     mapeoAux->tabla_hash=tabla;
+    mapeoAux->longitud_tabla=l_longitud(*tabla);
 
     *m=mapeoAux;
 }
