@@ -3,6 +3,8 @@
 
 #include "mapeo.h"
 
+static int max(int numero1,int numero2);
+
 /**
  Inicializa un mapeo vacío, con capacidad inicial igual al MAX(10, CI).
  Una referencia al mapeo creado es referenciada en *M.
@@ -12,6 +14,14 @@
 **/
 void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(void *, void *)){
 
+    tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
+    if(mapeoAux==NULL)
+        exit(MAP_ERROR_MEMORIA);
+    mapeoAux->cantidad_elementos = max(10,ci);
+    mapeoAux->comparador = fComparacion;
+    mapeoAux->hash_code = fHash;
+
+    *m=mapeoAux;
 }
 
 /**
@@ -45,5 +55,18 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
  Retorna el valor correspondiente, o NULL en caso contrario.
 **/
 tValor m_recuperar(tMapeo m, tClave c){
+
+}
+
+/**
+ Recibe dos enteros por parametro y retorna el mayor de ellos
+**/
+static int max(int numero1,int numero2){
+
+    int mayor;
+
+    mayor = (numero1>numero2) ? numero1 : numero2;
+
+    return mayor;
 
 }
