@@ -15,16 +15,18 @@ static int max(int numero1,int numero2);
 void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(void *, void *)){
 
     tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
+
     if(mapeoAux==NULL)
         exit(MAP_ERROR_MEMORIA);
-    mapeoAux->cantidad_elementos = max(10,ci);
+
+    mapeoAux->cantidad_elementos = 0;
     mapeoAux->comparador = fComparacion;
     mapeoAux->hash_code = fHash;
 
-    tLista * tabla;
-    crear_lista(tabla);
-    mapeoAux->tabla_hash=tabla;
-    mapeoAux->longitud_tabla=l_longitud(*tabla);
+    tLista tabla;
+    crear_lista(&tabla);
+    mapeoAux->tabla_hash=&tabla;
+    mapeoAux->longitud_tabla=max(10,ci);
 
     *m=mapeoAux;
 }
@@ -37,6 +39,13 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
 **/
 tValor m_insertar(tMapeo m, tClave c, tValor v){
 
+    tEntrada entradaAux =(tEntrada) malloc(sizeof(struct entrada));
+    entradaAux->clave=c;
+    entradaAux->valor=v;
+
+
+
+    return entradaAux;
 }
 
 /**
@@ -45,6 +54,8 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
 **/
 void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminarV)(void *)){
 
+
+
 }
 
 /**
@@ -52,6 +63,24 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
  Las claves y valores almacenados en las entradas son eliminados mediante las funciones fEliminarC y fEliminarV.
 **/
 void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void *)){
+
+    tPosicion nodoEliminar;
+    tPosicion nodoDerecho;
+    tEntrada entradaEliminar;
+    tPosicion p=l_primera(m->tabla_hash);
+
+    while(p->siguiente!=NULL){
+        nodoEliminar=p->siguiente;
+        nodoDerecho=nodoEliminar->siguiente;
+        p->siguiente=nodoDerecho;
+        entradaEliminar = nodoEliminar->elemento;
+        fEliminarV(entradaEliminar->valor);
+        fEliminarC(entradaEliminar->clave);
+
+        nodoEliminar->elemento=NULL;
+        nodoEliminar->siguiente=NULL;
+        free(nodoEliminar);
+    }
 
 }
 
