@@ -75,24 +75,6 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
 **/
 void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void *)){
 
-    tPosicion nodoEliminar;
-    tPosicion nodoDerecho;
-    tEntrada entradaEliminar;
-    tPosicion p=l_primera(m->tabla_hash);
-
-    while(p->siguiente!=NULL){
-        nodoEliminar=p->siguiente;
-        nodoDerecho=nodoEliminar->siguiente;
-        p->siguiente=nodoDerecho;
-        entradaEliminar = nodoEliminar->elemento;
-        fEliminarV(entradaEliminar->valor);
-        fEliminarC(entradaEliminar->clave);
-
-        nodoEliminar->elemento=NULL;
-        nodoEliminar->siguiente=NULL;
-        free(nodoEliminar);
-    }
-
 }
 
 /**
