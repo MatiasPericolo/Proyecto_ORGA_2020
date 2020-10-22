@@ -47,14 +47,37 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
  Finaliza indicando MAP_ERROR_MEMORIA si no es posible reservar memoria correspondientemente.
 **/
 tValor m_insertar(tMapeo m, tClave c, tValor v){
-
+    tValor toReturn = NULL;
     tEntrada entradaAux =(tEntrada) malloc(sizeof(struct entrada));
+    if(entradaAux == NULL){
+        exit(MAP_ERROR_MEMORIA);
+    }
     entradaAux->clave=c;
     entradaAux->valor=v;
+    int h = m->hash_code(c);
+    tLista lAux = m->tabla_hash[h];
+    tPosicion puntero = l_primera(lAux);
+    tPosicion ultimaEntrada = l_ultima(lAux);
+    int encontre = 0;
+    tEntrada pos;
 
+    while((puntero != ultimaEntrada) && (encontre == 0)){
+        pos = (tEntrada) l_recuperar(lAux,puntero);
+        if(m->comparador(pos->valor,v)==0){
+            encontre = 1;
+            pos->valor=v;
+        }
+    }
+    if((puntero == ultimaEntrada) && (encontre == 0)){
+        if(m->comparador(pos->valor,v)==0){
+            encontre = 1;
+            pos->valor=v;
+        } else {
+            l_insertar(lAux,ultimaEntrada,entradaAux);
+        }
+    }
 
-
-    return entradaAux;
+    return toReturn;
 }
 
 /**
@@ -66,9 +89,10 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
     funcion_eliminar_valor = fEliminarV;
     funcion_eliminar_clave = fEliminarC;
 
-    /*Busco la entrada que corresponde*/{
+    /*Busco la entrada que corresponde{
         l_eliminar(m->tabla_hash,posicion_de_entrada,&funcion_eliminar_entrada);
-    }
+    Ocultado temporalmente NO BORRAR
+    }*/
 
 }
 
