@@ -15,6 +15,7 @@ static int max(int numero1,int numero2);
 void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(void *, void *)){
 
     tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
+    int capacidad=max(10,ci);
 
     if(mapeoAux==NULL)
         exit(MAP_ERROR_MEMORIA);
@@ -22,11 +23,11 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     mapeoAux->cantidad_elementos = 0;
     mapeoAux->comparador = fComparacion;
     mapeoAux->hash_code = fHash;
+    mapeoAux->longitud_tabla=capacidad;
 
     tLista tabla;
     crear_lista(&tabla);
     mapeoAux->tabla_hash=&tabla;
-    mapeoAux->longitud_tabla=max(10,ci);
 
     *m=mapeoAux;
 }
