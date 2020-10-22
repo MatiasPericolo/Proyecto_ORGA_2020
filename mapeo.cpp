@@ -3,6 +3,9 @@
 
 #include "mapeo.h"
 
+/**
+ Variables Globales
+**/
 static int max(int numero1,int numero2);
 void (* funcion_eliminar_clave)(void *);
 void (* funcion_eliminar_valor)(void *);
