@@ -4,6 +4,9 @@
 #include "mapeo.h"
 
 static int max(int numero1,int numero2);
+void (* funcion_eliminar_clave)(void *);
+void (* funcion_eliminar_valor)(void *);
+void funcion_eliminar_entrada(tElemento e);
 
 /**
  Inicializa un mapeo vacío, con capacidad inicial igual al MAX(10, CI).
@@ -25,9 +28,15 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     mapeoAux->hash_code = fHash;
     mapeoAux->longitud_tabla=capacidad;
 
+    tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
+
     tLista tabla;
     crear_lista(&tabla);
     mapeoAux->tabla_hash=&tabla;
+
+    tLista * tabla;
+    crear_lista(tabla);
+    mapeoAux->tabla_hash=tabla;
 
     *m=mapeoAux;
 }
@@ -55,7 +64,12 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
 **/
 void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminarV)(void *)){
 
+    funcion_eliminar_valor = fEliminarV;
+    funcion_eliminar_clave = fEliminarC;
 
+    /*Busco la entrada que corresponde*/{
+        l_eliminar(m->tabla_hash,posicion_de_entrada,&funcion_eliminar_entrada);
+    }
 
 }
 
@@ -91,6 +105,15 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
 **/
 tValor m_recuperar(tMapeo m, tClave c){
 
+}
+
+/**
+ Recibe una entrada y elimina sus datos
+**/
+void funcion_eliminar_entrada(tElemento e){
+    tEntrada entrada=(tEntrada) e;
+    funcion_eliminar_valor(entrada->valor);
+    funcion_eliminar_clave(entrada->clave);
 }
 
 /**
