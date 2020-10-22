@@ -19,6 +19,7 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
 
     tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
     int capacidad=max(10,ci);
+    int i;
 
     if(mapeoAux==NULL)
         exit(MAP_ERROR_MEMORIA);
@@ -28,15 +29,10 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     mapeoAux->hash_code = fHash;
     mapeoAux->longitud_tabla=capacidad;
 
-    tMapeo mapeoAux =(tMapeo) malloc(sizeof(struct mapeo));
-
-    tLista tabla;
-    crear_lista(&tabla);
-    mapeoAux->tabla_hash=&tabla;
-
-    tLista * tabla;
-    crear_lista(tabla);
-    mapeoAux->tabla_hash=tabla;
+    mapeoAux->tabla_hash=(tLista *) malloc(capacidad*sizeof(tLista));
+    for(i=0;i<capacidad;i++){
+        crear_lista(&(mapeoAux->tabla_hash[i]));
+    }
 
     *m=mapeoAux;
 }
