@@ -67,7 +67,7 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
             encontre = 1;
             pos->clave=c;
         }
-        pos = l_siguiente(lAux,pos);
+        puntero = l_siguiente(lAux,puntero);
     }
     if((puntero == ultimaEntrada) && (encontre == 0)){
         if(m->comparador(pos->clave,c)==0){
@@ -101,13 +101,13 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
         pos = (tEntrada) l_recuperar(lAux,puntero);
         if(m->comparador(pos->clave,c)==0){
             encontre = 1;
-            l_eliminar(m->tabla_hash,pos,&funcion_eliminar_entrada);
+            l_eliminar(lAux,puntero,&funcion_eliminar_entrada);
         }
-        pos = l_siguiente(lAux,pos);
+        puntero = l_siguiente(lAux,puntero);
     }
     if((puntero == ultimaEntrada) && (encontre == 0)){
         if(m->comparador(pos->clave,c)==0){
-            l_eliminar(m->tabla_hash,pos,&funcion_eliminar_entrada);
+            l_eliminar(lAux,puntero,&funcion_eliminar_entrada);
         }
     }
 }
@@ -126,6 +126,29 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
 **/
 tValor m_recuperar(tMapeo m, tClave c){
 
+    int h = m->hash_code(c);
+    tLista lAux = m->tabla_hash[h];
+    tPosicion puntero = l_primera(lAux);
+    tPosicion ultimaEntrada = l_ultima(lAux);
+    int encontre = 0;
+    tEntrada pos;
+    tValor toReturn;
+
+    while((puntero != ultimaEntrada) && (encontre == 0)){
+        pos = (tEntrada) l_recuperar(lAux,puntero);
+        if(m->comparador(pos->clave,c)==0){
+            encontre = 1;
+            toReturn = pos->valor;
+        }
+        puntero = l_siguiente(lAux,puntero);
+    }
+    if((puntero == ultimaEntrada) && (encontre == 0)){
+        if(m->comparador(pos->clave,c)==0){
+            toReturn = pos->valor;
+        }
+    }
+
+    return toReturn;
 }
 
 /**
