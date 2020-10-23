@@ -118,6 +118,16 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
 **/
 void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void *)){
 
+    unsigned int i;
+
+    for(i=0;i<((*m)->longitud_tabla);i++){
+        l_destruir(&((*m)->tabla_hash[i]),&funcion_eliminar_entrada);
+    }
+
+    free((*m)->tabla_hash);
+    free(m);
+    (*m) = NULL;
+
 }
 
 /**
