@@ -125,6 +125,7 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
     }
 
     free((*m)->tabla_hash);
+    (*m)->tabla_hash = NULL;
     free(m);
     (*m) = NULL;
 
