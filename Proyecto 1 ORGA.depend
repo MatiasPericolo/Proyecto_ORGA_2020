@@ -6,7 +6,7 @@
 
 1603236497 c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.h
 
-1584205420 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
+1603549376 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
 	<stdio.h>
 	<stdlib.h>
 
@@ -20,4 +20,12 @@
 1603234202 source:d:\uns\orga\proyecto_orga_2020\main.c
 	<stdio.h>
 	<stdlib.h>
+
+1603549790 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
+	<stdio.h>
+	<stdlib.h>
+	"mapeo.h"
+
+1603234844 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.h
+	"lista.h"
 
