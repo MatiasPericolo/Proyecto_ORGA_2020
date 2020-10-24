@@ -169,6 +169,9 @@ void funcion_eliminar_entrada(tElemento e){
     tEntrada entrada=(tEntrada) e;
     funcion_eliminar_valor(entrada->valor);
     funcion_eliminar_clave(entrada->clave);
+
+    free(e);
+    (*e)=NULL;
 }
 
 /**
