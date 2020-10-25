@@ -22,8 +22,9 @@ void fEliminarV (tValor valor){
 
 }
 
-int fHash(char *palabra) {
+int fHash(tClave clave) {
     int hash = 0;
+    char * palabra=(char *) &clave;
     for (int i = 0; i < strlen(palabra); i++) {
         hash = 31 * hash + palabra[i];
     }
@@ -31,24 +32,49 @@ int fHash(char *palabra) {
     return hash;
 }
 
+int fComparacion(tClave c1,tClave c2){
+    return 0;
+}
+
 int main(int argc,char ** args)
 {
-    printf("Hello world!\n");
-    printf("Cantidad de parametros: %d\n",argc);
+    tMapeo mapeo;
+    char ** claveAux;
+    int * valorAux;
 
+    crear_mapeo(&mapeo,10,fHash,fComparacion);
+
+    claveAux=(char **) malloc(100*sizeof(char *));
+    valorAux=(int *) malloc(sizeof(int));
 
     char * archivo=args[1];
-    printf("%s\n",archivo);
 
     int c;
     FILE *file;
     file = fopen(archivo, "r");
+    int i;
+
+    i=0;
+
     if (file) {
         while(((c = getc(file)) != EOF)){
             if((c != ' ')){
-                putchar(c);
+                (*claveAux)[i]=c;
+                i++;
             }else{
-                printf("\n");
+                if((valorAux = m_recuperar(mapeo,claveAux))!=NULL){
+                    (*valorAux)++;
+                }else{
+                    *valorAux=1;
+                }
+
+                m_insertar(mapeo,claveAux,valorAux);
+
+                //Limpio la clave auxiliar
+                for(i=i;i>0;i--){
+                    (*claveAux)[i]=0;
+                }
+
             }
         }
 
