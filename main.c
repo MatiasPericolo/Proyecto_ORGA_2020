@@ -38,14 +38,20 @@ int main(int argc,char ** args)
 
 
     char * archivo=args[1];
-    printf("%s",archivo);
+    printf("%s\n",archivo);
 
     int c;
     FILE *file;
     file = fopen(archivo, "r");
     if (file) {
-        while ((c = getc(file)) != EOF)
-            putchar(c);
+        while(((c = getc(file)) != EOF)){
+            if((c != ' ')){
+                putchar(c);
+            }else{
+                printf("\n");
+            }
+        }
+
         fclose(file);
     }
 
