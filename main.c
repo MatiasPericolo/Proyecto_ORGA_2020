@@ -1,5 +1,5 @@
-#include "lista.h"
-#include "mapeo.h"
+#include "lista.cpp"
+#include "mapeo.cpp"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,6 +19,15 @@ void fEliminarV (tValor valor){
 
     free(valor);
 
+}
+
+int fHash(char *palabra) {
+    int hash = 0;
+    for (int i = 0; i < strlen(palabra); i++) {
+        hash = 31 * hash + palabra[i];
+    }
+
+    return hash;
 }
 
 int main(int argc,char ** args)
