@@ -1,3 +1,5 @@
+#include "lista.h"
+#include "mapeo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
