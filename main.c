@@ -2,6 +2,7 @@
 #include "mapeo.cpp"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void fEliminar (tElemento elemento){
 
@@ -36,6 +37,17 @@ int main(int argc,char ** args)
     printf("Cantidad de parametros: %d\n",argc);
 
 
+    char * archivo=args[1];
+    printf("%s",archivo);
+
+    int c;
+    FILE *file;
+    file = fopen(archivo, "r");
+    if (file) {
+        while ((c = getc(file)) != EOF)
+            putchar(c);
+        fclose(file);
+    }
 
     return 0;
 }
