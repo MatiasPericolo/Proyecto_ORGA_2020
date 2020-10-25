@@ -81,6 +81,18 @@ int main(int argc,char ** args)
         fclose(file);
     }
 
+    /*
+    char ** tester=(char **) malloc(4*sizeof(char *));;
+    char ** recuperado=(char **) malloc(4*sizeof(char *));;
+
+    (*tester)[0]='s';
+    (*tester)[1]='o';
+    (*tester)[2]='l';
+
+    recuperado=m_recuperar(mapeo,tester);
+    printf("%c %c %c",(*recuperado)[0],(*recuperado)[1],(*recuperado)[2]);
+    */
+
     return 0;
 }
 
