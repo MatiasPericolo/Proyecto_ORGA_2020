@@ -33,7 +33,18 @@ int fHash(tClave clave) {
 }
 
 int fComparacion(tClave c1,tClave c2){
-    return 0;
+
+    int toReturn=1;
+
+    char * palabra1=*((char **)c1);
+    char * palabra2=*((char **)c2);
+
+    if(strcmp(palabra1,palabra2)==0)
+        toReturn=0;
+
+    //printf("Palabra1: %s/Palabra2: %s/Devuelve: %i ",palabra1,palabra2,toReturn);
+
+    return toReturn;
 }
 
 int main(int argc,char ** args)
