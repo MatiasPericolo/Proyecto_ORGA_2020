@@ -50,7 +50,6 @@ int fComparacion(tClave c1,tClave c2){
 int main(int argc,char ** args)
 {
 
-
     tMapeo mapeo;
     char ** claveAux;
     int * valorAux;

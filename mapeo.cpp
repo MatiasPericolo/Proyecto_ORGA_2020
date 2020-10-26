@@ -51,6 +51,9 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
 
     tValor toReturn;
     tEntrada entradaAux=(tEntrada) malloc(sizeof(struct entrada));
+    if(entradaAux==NULL)
+        exit(MAP_ERROR_MEMORIA);
+
     printf("|Aca webon: %s|\n",*((char**)c));
     entradaAux->clave=c;
     entradaAux->valor=v;
