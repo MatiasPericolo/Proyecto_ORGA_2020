@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1603735753 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.cpp
+1603737801 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.cpp
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
 
 1603236497 c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.h
 
-1603735319 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
+1603737801 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
 	"lista.cpp"
 	"mapeo.cpp"
 	<stdio.h>
@@ -24,7 +24,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1603735464 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
+1603737801 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"
@@ -32,12 +32,12 @@
 1603234844 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.h
 	"lista.h"
 
-1603735753 c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.cpp
+1603737801 c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.cpp
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
 
-1603735464 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
+1603738013 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"

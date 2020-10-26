@@ -48,8 +48,10 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
 **/
 tValor m_insertar(tMapeo m, tClave c, tValor v){
 
+
     tValor toReturn;
-    tEntrada entradaAux;
+    tEntrada entradaAux=(tEntrada) malloc(sizeof(struct entrada));
+    printf("|Aca webon: %s|\n",*((char**)c));
     entradaAux->clave=c;
     entradaAux->valor=v;
     int h = m->hash_code(c);
@@ -60,10 +62,9 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
     int encontre = 0;
     tEntrada pos;
 
-    printf("Tamanio: %i ",l_longitud(lAux));
+    printf("Tamanio: %i \n",l_longitud(lAux));
 
     while((puntero != ultimaEntrada) && (encontre == 0)){
-
         pos = (tEntrada) l_recuperar(lAux,puntero);
         if(m->comparador(pos->clave,c)==0){
             encontre = 1;
@@ -78,11 +79,11 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
             pos->clave=c;
         } else {
             l_insertar(lAux,ultimaEntrada,entradaAux);
-            printf("Done pa ");
+            printf("Done pa\n");
         }
     }
 
-    printf("|Aca webon: %s|",*((char**)c));
+    printf("|Aca webon: %s|\n",*((char**)c));
 
     return toReturn;
 }
@@ -146,7 +147,7 @@ tValor m_recuperar(tMapeo m, tClave c){
 
     int h = m->hash_code(c);
     h=h%(m->longitud_tabla);
-    printf("Hash: %i ",h);
+    printf("Hash: %i \n",h);
     tLista lAux = m->tabla_hash[h];
     tPosicion puntero = l_primera(lAux);
     tPosicion ultimaEntrada = l_ultima(lAux);

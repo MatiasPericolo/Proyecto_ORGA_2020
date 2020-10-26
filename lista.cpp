@@ -32,8 +32,9 @@ void l_insertar(tLista l, tPosicion p, tElemento e){
 
         nodoNuevo=(tPosicion) malloc(sizeof(struct celda));
 
-        if(nodoNuevo==NULL)
+        if(nodoNuevo==NULL){
             exit(LST_ERROR_MEMORIA);
+        }
         nodoNuevo->elemento=e;
 
         nodoDerecho=p->siguiente;

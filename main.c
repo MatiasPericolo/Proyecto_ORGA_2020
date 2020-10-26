@@ -73,19 +73,19 @@ int main(int argc,char ** args)
         while(((caracter = getc(file)) != EOF)){
 
             if((caracter != ' ')){
-                printf("No ");
+                printf("No\n");
                 (*claveAux)[i]=caracter;
                 i++;
             }else{
                (*claveAux)[i] = '\0';
-                printf("%s ",*claveAux);
+                printf("%s \n",*claveAux);
                 if(m_recuperar(mapeo,claveAux)!=NULL){
                     valorAux=m_recuperar(mapeo,claveAux);
                     (*valorAux)++;
                 }else{
                     *valorAux=1;
                 }
-                printf("Si ");
+                printf("Si\n");
 
                 m_insertar(mapeo,claveAux,valorAux);
 
@@ -122,8 +122,9 @@ int main(int argc,char ** args)
 
     recuperado=m_recuperar(mapeo,tester);
     printf("%c %c %c",(*recuperado)[0],(*recuperado)[1],(*recuperado)[2]);
-
-
+int fin;
+            printf("Fin: ");
+            scanf("Ingrese algo: %i",&fin);
     return 0;
 }
 
