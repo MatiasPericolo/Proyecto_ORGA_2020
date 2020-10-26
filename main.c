@@ -28,6 +28,7 @@ int fHash(tClave clave) {
     for (int i = 0; i < strlen(palabra); i++) {
         hash = 31 * hash + palabra[i];
     }
+    printf("|Hash: %i |",hash);
     return hash;
 }
 
@@ -60,26 +61,20 @@ int main(int argc,char ** args)
     if (file) {
         while(((caracter = getc(file)) != EOF)){
 
-        /*
-        if(caracter != ' ')
-            printf("No ");
-        else
-            printf("Si ");
-        */
-
             if((caracter != ' ')){
                 printf("No ");
                 (*claveAux)[i]=caracter;
                 i++;
             }else{
-                printf("%s",*claveAux);
+               (*claveAux)[i] = '\0';
+                printf("%s ",*claveAux);
                 if(m_recuperar(mapeo,claveAux)!=NULL){
                     valorAux=m_recuperar(mapeo,claveAux);
                     (*valorAux)++;
                 }else{
                     *valorAux=1;
                 }
-
+                printf("Si ");
 
                 m_insertar(mapeo,claveAux,valorAux);
 
@@ -91,7 +86,19 @@ int main(int argc,char ** args)
             }
         }
 
+        (*claveAux)[i] = '\0';
+        //printf("%s",*claveAux);
+        if(m_recuperar(mapeo,claveAux)!=NULL){
+            valorAux=m_recuperar(mapeo,claveAux);
+            (*valorAux)++;
+        }else{
+            *valorAux=1;
+        }
+
+        m_insertar(mapeo,claveAux,valorAux);
+
         fclose(file);
+
     }
 
 

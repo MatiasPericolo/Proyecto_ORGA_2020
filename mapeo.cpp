@@ -52,6 +52,9 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
     tEntrada entradaAux;
     entradaAux->clave=c;
     entradaAux->valor=v;
+
+    //printf("%s",*((char**)entradaAux->clave));
+
     int h = m->hash_code(c);
     h=h%(m->longitud_tabla);
     tLista lAux = m->tabla_hash[h];
@@ -91,6 +94,7 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
     funcion_eliminar_clave = fEliminarC;
 
     int h = m->hash_code(c);
+    h=h%(m->longitud_tabla);
     tLista lAux = m->tabla_hash[h];
     tPosicion puntero = l_primera(lAux);
     tPosicion ultimaEntrada = l_ultima(lAux);
@@ -139,6 +143,7 @@ tValor m_recuperar(tMapeo m, tClave c){
 
     int h = m->hash_code(c);
     h=h%(m->longitud_tabla);
+    printf("%i",h);
     tLista lAux = m->tabla_hash[h];
     tPosicion puntero = l_primera(lAux);
     tPosicion ultimaEntrada = l_ultima(lAux);
@@ -155,6 +160,7 @@ tValor m_recuperar(tMapeo m, tClave c){
         puntero = l_siguiente(lAux,puntero);
     }
     if((puntero == ultimaEntrada) && (encontre == 0)){
+
         if(m->comparador(pos->clave,c)==0){
             toReturn = pos->valor;
         }
@@ -162,6 +168,8 @@ tValor m_recuperar(tMapeo m, tClave c){
 
     if(encontre==0)
         toReturn=NULL;
+
+
 
     return toReturn;
 
