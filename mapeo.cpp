@@ -47,15 +47,16 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
  Finaliza indicando MAP_ERROR_MEMORIA si no es posible reservar memoria correspondientemente.
 **/
 tValor m_insertar(tMapeo m, tClave c, tValor v){
-    tValor toReturn = NULL;
-    tEntrada entradaAux =(tEntrada) malloc(sizeof(struct entrada));
-    if(entradaAux == NULL){
-        exit(MAP_ERROR_MEMORIA);
-    }
+
+    tValor toReturn;
+    tEntrada entradaAux;
     entradaAux->clave=c;
+    printf("Hola");
     entradaAux->valor=v;
     int h = m->hash_code(c);
+    h=h%(m->longitud_tabla);
     tLista lAux = m->tabla_hash[h];
+
     tPosicion puntero = l_primera(lAux);
     tPosicion ultimaEntrada = l_ultima(lAux);
     int encontre = 0;
@@ -138,6 +139,7 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
 tValor m_recuperar(tMapeo m, tClave c){
 
     int h = m->hash_code(c);
+    h=h%(m->longitud_tabla);
     tLista lAux = m->tabla_hash[h];
     tPosicion puntero = l_primera(lAux);
     tPosicion ultimaEntrada = l_ultima(lAux);
@@ -159,7 +161,11 @@ tValor m_recuperar(tMapeo m, tClave c){
         }
     }
 
+    if(encontre==0)
+        toReturn=NULL;
+
     return toReturn;
+
 }
 
 /**

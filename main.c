@@ -28,7 +28,6 @@ int fHash(tClave clave) {
     for (int i = 0; i < strlen(palabra); i++) {
         hash = 31 * hash + palabra[i];
     }
-
     return hash;
 }
 
@@ -38,6 +37,8 @@ int fComparacion(tClave c1,tClave c2){
 
 int main(int argc,char ** args)
 {
+
+
     tMapeo mapeo;
     char ** claveAux;
     int * valorAux;
@@ -49,7 +50,7 @@ int main(int argc,char ** args)
 
     char * archivo=args[1];
 
-    int c;
+    char caracter;
     FILE *file;
     file = fopen(archivo, "r");
     int i;
@@ -57,12 +58,23 @@ int main(int argc,char ** args)
     i=0;
 
     if (file) {
-        while(((c = getc(file)) != EOF)){
-            if((c != ' ')){
-                (*claveAux)[i]=c;
+        while(((caracter = getc(file)) != EOF)){
+
+        /*
+        if(caracter != ' ')
+            printf("No ");
+        else
+            printf("Si ");
+        */
+
+            if((caracter != ' ')){
+                printf("No ");
+                (*claveAux)[i]=caracter;
                 i++;
             }else{
-                if((valorAux = m_recuperar(mapeo,claveAux))!=NULL){
+
+                if(m_recuperar(mapeo,claveAux)!=NULL){
+                    valorAux=m_recuperar(mapeo,claveAux);
                     (*valorAux)++;
                 }else{
                     *valorAux=1;
@@ -81,7 +93,7 @@ int main(int argc,char ** args)
         fclose(file);
     }
 
-    /*
+
     char ** tester=(char **) malloc(4*sizeof(char *));;
     char ** recuperado=(char **) malloc(4*sizeof(char *));;
 
@@ -91,7 +103,7 @@ int main(int argc,char ** args)
 
     recuperado=m_recuperar(mapeo,tester);
     printf("%c %c %c",(*recuperado)[0],(*recuperado)[1],(*recuperado)[2]);
-    */
+
 
     return 0;
 }
