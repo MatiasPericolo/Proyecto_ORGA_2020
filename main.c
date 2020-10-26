@@ -45,7 +45,7 @@ int main(int argc,char ** args)
 
     crear_mapeo(&mapeo,10,fHash,fComparacion);
 
-    claveAux=(char **) malloc(100*sizeof(char *));
+    claveAux=(char **) malloc(sizeof(char *));
     valorAux=(int *) malloc(sizeof(int));
 
     char * archivo=args[1];
@@ -72,13 +72,14 @@ int main(int argc,char ** args)
                 (*claveAux)[i]=caracter;
                 i++;
             }else{
-
+                printf("%s",*claveAux);
                 if(m_recuperar(mapeo,claveAux)!=NULL){
                     valorAux=m_recuperar(mapeo,claveAux);
                     (*valorAux)++;
                 }else{
                     *valorAux=1;
                 }
+
 
                 m_insertar(mapeo,claveAux,valorAux);
 

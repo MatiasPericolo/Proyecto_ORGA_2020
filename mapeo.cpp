@@ -51,7 +51,6 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
     tValor toReturn;
     tEntrada entradaAux;
     entradaAux->clave=c;
-    printf("Hola");
     entradaAux->valor=v;
     int h = m->hash_code(c);
     h=h%(m->longitud_tabla);

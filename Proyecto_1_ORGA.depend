@@ -6,7 +6,7 @@
 
 1603236497 c:\users\matias\documents\codeblocks proyects\proyecto 1\lista.h
 
-1603670850 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
+1603671575 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\main.c
 	"lista.cpp"
 	"mapeo.cpp"
 	<stdio.h>
@@ -24,7 +24,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1603670932 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
+1603671299 source:c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"
@@ -37,7 +37,7 @@
 	<stdlib.h>
 	"lista.h"
 
-1603670932 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
+1603671700 c:\users\matias\documents\codeblocks proyects\proyecto 1\mapeo.cpp
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"
