@@ -24,11 +24,11 @@ void fEliminarV (tValor valor){
 
 int fHash(tClave clave) {
     int hash = 0;
-    char * palabra=(char *) &clave;
+    char * palabra=*((char **)clave);
     for (int i = 0; i < strlen(palabra); i++) {
         hash = 31 * hash + palabra[i];
     }
-    printf("|Hash: %i |",hash);
+    //printf("|Palabra: %s /Hash: %i |",palabra,hash);
     return hash;
 }
 
